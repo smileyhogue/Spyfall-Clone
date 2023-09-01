@@ -1,0 +1,17 @@
+{
+  "sessionID": "477770",
+  "host": "1",
+  "players": [
+    {
+      "name": "1"
+    },
+    {
+      "name": "2"
+    },
+    {
+      "name": "3"
+    }
+  ],
+  "gameState": "lobby",
+  "roles": {}
+}
