@@ -41,6 +41,24 @@ function GameSession({ params }: { params: { sessionId: string } }) {
     };
   }, [sessionId]);
 
+  // Function to start the game
+  async function startGame() {
+    try {
+      const response = await fetch(`/api/gameSession/${sessionId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ players: gameSessionData.players })
+      });
+      
+      const data = await response.json();
+      // Update the UI or navigate to the game page based on the response
+    } catch (error) {
+      console.error('Error starting the game:', error);
+    }
+  }
+
   if (!gameSessionData) {
     return <div>Loading...</div>;
   }
@@ -48,6 +66,7 @@ function GameSession({ params }: { params: { sessionId: string } }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-darkblue-900 text-lightblue-100 p-24">
       <h1 className="text-5xl font-bold mb-8">Game ID: {sessionId}</h1>
+      <button onClick={startGame} className="bg-green-500 p-2 rounded mb-8">Start Game</button>
       <div className="bg-darkblue-800 p-4 rounded-lg w-full max-w-md">
         <h2 className="text-2xl mb-4 text-darkblue-600">Players:</h2>
         <ul className="list-none p-0">
@@ -82,8 +101,3 @@ function getCookie(name: string): string | undefined {
 }
 
 export default GameSession;
-
-
-
-
-

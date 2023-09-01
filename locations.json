@@ -1,0 +1,147 @@
+{
+    "locations": {
+      "Airplane": {
+        "roles": [
+          {"name": "Airline Attendant", "isUnique": false},
+          {"name": "Air Marshall", "isUnique": true},
+          {"name": "Co-pilot", "isUnique": true},
+          {"name": "Flight Instructor", "isUnique": true},
+          {"name": "Passenger", "isUnique": false},
+          {"name": "Pilot", "isUnique": true},
+          {"name": "Terrorist", "isUnique": false}
+        ]
+      },
+      "Bank": {
+        "roles": [
+          {"name": "Accountant", "isUnique": false},
+          {"name": "Armored Truck Driver", "isUnique": true},
+          {"name": "Customer", "isUnique": false},
+          {"name": "Manager", "isUnique": true},
+          {"name": "Notary", "isUnique": true},
+          {"name": "Security Guard", "isUnique": true},
+          {"name": "Teller", "isUnique": false}
+        ]
+      },
+      "Concert": {
+        "roles": [
+          {"name": "Audio Technician", "isUnique": true},
+          {"name": "Drummer", "isUnique": true},
+          {"name": "Fan", "isUnique": false},
+          {"name": "Guitarist", "isUnique": true},
+          {"name": "Groupie", "isUnique": false},
+          {"name": "Security", "isUnique": false},
+          {"name": "Singer", "isUnique": true}
+        ]
+      },
+      "Grocery Store": {
+        "roles": [
+          {"name": "Bag Boy", "isUnique": true},
+          {"name": "Baker", "isUnique": true},
+          {"name": "Butcher", "isUnique": true},
+          {"name": "Cashier", "isUnique": true},
+          {"name": "Customer", "isUnique": true},
+          {"name": "Pharmacist", "isUnique": true},
+          {"name": "Stock Clerk", "isUnique": true}
+        ]
+      },
+      "Military Base": {
+        "roles": [
+          {"name": "Chef", "isUnique": true},
+          {"name": "Colonel", "isUnique": true},
+          {"name": "Engineer", "isUnique": true},
+          {"name": "Medic", "isUnique": true},
+          {"name": "Pilot", "isUnique": true},
+          {"name": "Refugee", "isUnique": true},
+          {"name": "Soldier", "isUnique": true}
+        ]
+      },
+      "Movie Theater": {
+        "roles": [
+          {"name": "Booth Crew Member", "isUnique": true},
+          {"name": "Concessionist", "isUnique": true},
+          {"name": "Celebrity", "isUnique": true},
+          {"name": "Critic", "isUnique": true},
+          {"name": "Usher", "isUnique": true},
+          {"name": "Ticket Vendor", "isUnique": true},
+          {"name": "Viewer", "isUnique": true}
+        ]
+      },
+      "Restaurant": {
+        "roles": [
+          {"name": "Bartender", "isUnique": true},
+          {"name": "Cook", "isUnique": true},
+          {"name": "Dishwasher", "isUnique": true},
+          {"name": "Host/Hostess", "isUnique": false},
+          {"name": "Food Runner", "isUnique": true},
+          {"name": "Manager", "isUnique": true},
+          {"name": "Server", "isUnique": true}
+        ]
+      },
+      "Stadium": {
+        "roles": [
+          {"name": "Coach", "isUnique": true},
+          {"name": "Cheerleader", "isUnique": true},
+          {"name": "Fans", "isUnique": false},
+          {"name": "Food Vendor", "isUnique": true},
+          {"name": "Player", "isUnique": true},
+          {"name": "Security Guard", "isUnique": true},
+          {"name": "Ticket Vendor", "isUnique": true}
+        ]
+      },
+      "Television Set": {
+        "roles": [
+          {"name": "Audience Member", "isUnique": true},
+          {"name": "Boom Operator", "isUnique": true},
+          {"name": "Cameraman", "isUnique": true},
+          {"name": "Cast Member", "isUnique": true},
+          {"name": "Clapperboard Operator", "isUnique": true},
+          {"name": "Director", "isUnique": true},
+          {"name": "Stuntman", "isUnique": true}
+        ]
+      },
+      "University": {
+        "roles": [
+          {"name": "Adviser", "isUnique": true},
+          {"name": "Campus Security", "isUnique": true},
+          {"name": "Janitor", "isUnique": true},
+          {"name": "Parent", "isUnique": true},
+          {"name": "Professor", "isUnique": true},
+          {"name": "Student", "isUnique": true},
+          {"name": "Traffic Coordinator", "isUnique": true}
+        ]
+      },
+      "Hospital": {
+        "roles": [
+          {"name": "Surgeon", "isUnique": true},
+          {"name": "Nurse", "isUnique": false},
+          {"name": "Anesthesiologist", "isUnique": true},
+          {"name": "Patient", "isUnique": false},
+          {"name": "Radiologist", "isUnique": true},
+          {"name": "Pharmacist", "isUnique": true},
+          {"name": "Administrator", "isUnique": true}
+        ]
+      },
+      "Beach": {
+        "roles": [
+          {"name": "Lifeguard", "isUnique": true},
+          {"name": "Surfer", "isUnique": false},
+          {"name": "Tourist", "isUnique": false},
+          {"name": "Photographer", "isUnique": false},
+          {"name": "Ice Cream Seller", "isUnique": true},
+          {"name": "Beach Volleyball Player", "isUnique": false},
+          {"name": "Fisherman", "isUnique": true}
+        ]
+      },
+      "Space Station": {
+        "roles": [
+          {"name": "Astronaut", "isUnique": true},
+          {"name": "Biologist", "isUnique": true},
+          {"name": "Engineer", "isUnique": true},
+          {"name": "Commander", "isUnique": true},
+          {"name": "Medic", "isUnique": true},
+          {"name": "Alien", "isUnique": true},
+          {"name": "Space Tourist", "isUnique": false}
+        ]
+      }
+    }
+}
