@@ -7,7 +7,6 @@ export async function GET(
   { params }: { params: { sessionId: string } }
   ) {
   try {
-    console.log('params:', params);
     const sessionId = params.sessionId;
 
     if (!sessionId) {
