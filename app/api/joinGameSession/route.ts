@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs/promises';
 import path from 'path';
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers'; // Import the cookies function
 
 export async function POST(req: Request, res: NextApiResponse) {
   try {
@@ -20,6 +21,9 @@ export async function POST(req: Request, res: NextApiResponse) {
 
     // Write the updated game session data back to the JSON file
     await fs.writeFile(gameSessionFile, JSON.stringify(gameSession, null, 2));
+
+    // Set the playerName in a cookie
+    cookies().set('playerName', playerName);
 
     // Send a success response
     return NextResponse.json({ success: true });

@@ -4,11 +4,21 @@ import React, { useEffect, useState } from 'react';
 function GameSession({ params }: { params: { sessionId: string } }) {
   const sessionId = params.sessionId;
 
+  // State for the player name retrieved from the cookie
+  const [playerNameFromCookie, setPlayerNameFromCookie] = useState<string | undefined>();
+  
+  // State for the game session data
   const [gameSessionData, setGameSessionData] = useState<{
     players: Array<any>;
     host: string;
   } | null>(null);
 
+  // First useEffect to retrieve player's name from the cookie
+  useEffect(() => {
+    setPlayerNameFromCookie(getCookie('playerName'));
+  }, []);
+
+  // Second useEffect to fetch game session data
   useEffect(() => {
     async function fetchGameSessionData() {
       try {
@@ -45,7 +55,11 @@ function GameSession({ params }: { params: { sessionId: string } }) {
             <li
               key={index}
               className={`p-2 mb-2 rounded-lg ${
-                gameSessionData.host === player.name ? 'bg-green-500' : 'bg-blue-500'
+                gameSessionData.host === player.name 
+                  ? 'bg-green-500' 
+                  : playerNameFromCookie === player.name 
+                    ? 'bg-yellow-500' 
+                    : 'bg-blue-500'
               }`}
             >
               {player.name} {gameSessionData.host === player.name ? '👑' : ''}
@@ -57,4 +71,19 @@ function GameSession({ params }: { params: { sessionId: string } }) {
   );
 }
 
+// Helper function to extract a specific cookie value by its name
+function getCookie(name: string): string | undefined {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    // Decode the cookie value to convert "Player%202" to "Player 2"
+    return decodeURIComponent(parts.pop()?.split(';').shift() || '');
+  }
+}
+
 export default GameSession;
+
+
+
+
+

@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
+import { cookies } from 'next/headers'; // Import the cookies function
 
 export async function POST(request: Request) {
   try {
     const requestData = await request.json(); // Parse the JSON request body
-    console.log(requestData);
     if (!requestData) {
       return NextResponse.json({ error: 'Request data is empty' }, { status: 400 });
     }
@@ -17,18 +17,21 @@ export async function POST(request: Request) {
     const gameSession = {
       sessionID: sessionId,
       host: requestData.hostName, // Set the host player
-      players: [{name: requestData.hostName}], // Initialize with an empty player list
+      players: [{name: requestData.hostName}], // Initialize with the host player
       gameState: "lobby", // Set the initial game state
       roles: {}, // Initialize with an empty roles object
     };
-    console.log(gameSession);
+
     // Define the path to the game sessions folder and file
     const gameSessionsFolder = path.join(process.cwd(), 'game_sessions');
     const gameSessionFile = path.join(gameSessionsFolder, `${sessionId}.json`);
-    console.log(gameSessionFile);
+
     // Write the game session data to the JSON file
     await fs.writeFile(gameSessionFile, JSON.stringify(gameSession, null, 2));
-    console.log("wrote file");
+
+    // Set the hostName in a cookie
+    cookies().set('playerName', requestData.hostName);
+
     return NextResponse.json({ sessionId });
   } catch (error) {
     console.error("Error creating game session in createGameSession:", error);
