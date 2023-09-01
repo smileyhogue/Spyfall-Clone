@@ -6,9 +6,7 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request, res: NextApiResponse) {
   try {
     // parse body json
-    console.log('req.body:', req.body);
     const body = await req.json();
-    console.log('body:', body);
     const { playerName, sessionId } = body;
 
     // Read the existing game session data from the JSON file

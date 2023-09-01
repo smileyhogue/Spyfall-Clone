@@ -6,7 +6,6 @@ import JoinGameModal from '../modals/ClientJoinGameModal'; // Import the new Joi
 
 async function createGameSession(hostName) {
   try {
-    console.log('Creating game session with host name:', hostName);
     // Call the API endpoint to create a game session
     const response = await fetch('/api/createGameSession', {
       method: 'POST', // Use POST method
@@ -42,7 +41,6 @@ export default function Home() {
   };
 
   const handleCreateGame = (hostName) => {
-    console.log('handleCreateGame with host name:', hostName);
     createGameSession(hostName);
 
     setIsHostModalOpen(false);
