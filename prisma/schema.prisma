@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model game_session_players {
+  id            BigInt        @id @default(autoincrement())
+  sessionID     String
+  player_name   String?
+  game_sessions game_sessions @relation(fields: [sessionID], references: [sessionID], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model game_session_roles {
+  id            BigInt        @id @default(autoincrement())
+  sessionID     String
+  player_name   String?
+  role_id       BigInt?
+  roles         roles?        @relation(fields: [role_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  game_sessions game_sessions @relation(fields: [sessionID], references: [sessionID], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model game_sessions {
+  sessionID            String                 @id
+  host                 String
+  gameState            String?
+  locationId           BigInt?
+  game_session_players game_session_players[]
+  game_session_roles   game_session_roles[]
+  locations            locations?             @relation(fields: [locationId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model locations {
+  id            BigInt          @id @default(autoincrement())
+  name          String          @unique
+  game_sessions game_sessions[]
+  roles         roles[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model roles {
+  id                 BigInt               @id @default(autoincrement())
+  location_id        BigInt
+  name               String?
+  isUnique           Boolean?
+  game_session_roles game_session_roles[]
+  locations          locations            @relation(fields: [location_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
