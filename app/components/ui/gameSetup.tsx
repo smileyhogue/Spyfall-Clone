@@ -47,6 +47,7 @@ const joinSchema = z.object({
 export default function GameSetup() {
   const [ToGame, setToGame] = useState("");
   const router = useRouter();
+
   async function host(data: object) {
     const gameData = await startGame(data);
     const sessionID = gameData.sessionID;
@@ -54,12 +55,11 @@ export default function GameSetup() {
   }
 
   async function join(data: object) {
-    console.log(data);
     const gameData = await joinGame(data);
     if (!gameData) {
-        console.log("wrong session id");
-          return;
-      }
+      console.log("wrong session id");
+      return;
+    }
     const sessionID = gameData.sessionID;
     setToGame(sessionID);
   }
@@ -84,99 +84,96 @@ export default function GameSetup() {
     },
   });
   return (
-    <div className="flex flex-col space-y-4 mb-12">
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button>Host a game</Button>
-        </PopoverTrigger>
-        <PopoverContent>
-          <div className="flex w-full max-w-sm items-center space-x-2">
-            <Form {...hostform}>
-              <form
-                onSubmit={hostform.handleSubmit(host)}
-                className="space-y-8"
-              >
-                <FormField
-                  control={hostform.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Type your display name"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        This is your public display name.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                ></FormField>
-                <Button type="submit">Submit</Button>
-              </form>
-            </Form>
-          </div>
-        </PopoverContent>
-      </Popover>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button>Join a game</Button>
-        </PopoverTrigger>
-        <PopoverContent>
-          <div className="items-center">
-            <Form {...joinform}>
-              <form
-                onSubmit={joinform.handleSubmit(join)}
-                className="space-y-8"
-              >
-                <FormField
-                  control={joinform.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Type your display name"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        This is your public display name.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                ></FormField>
+      <div className="flex flex-col space-y-4 mb-12">
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button>Host a game</Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <div className="flex w-full max-w-sm items-center space-x-2">
+              <Form {...hostform}>
+                <form
+                  onSubmit={hostform.handleSubmit(host)}
+                  className="space-y-8"
+                >
+                  <FormField
+                    control={hostform.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Type your display name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormDescription>
+                          This is your public display name.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  ></FormField>
+                  <Button type="submit">Submit</Button>
+                </form>
+              </Form>
+            </div>
+          </PopoverContent>
+        </Popover>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button>Join a game</Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <div className="items-center">
+              <Form {...joinform}>
+                <form
+                  onSubmit={joinform.handleSubmit(join)}
+                  className="space-y-8"
+                >
+                  <FormField
+                    control={joinform.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Type your display name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormDescription>
+                          This is your public display name.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  ></FormField>
 
-                <FormField
-                  control={joinform.control}
-                  name="gameID"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Game Session ID</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Session ID"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        The host should have this.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                ></FormField>
-                <Button type="submit">Submit</Button>
-              </form>
-            </Form>
-          </div>
-        </PopoverContent>
-      </Popover>
-    </div>
+                  <FormField
+                    control={joinform.control}
+                    name="gameID"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Game Session ID</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Session ID" {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          The host should have this.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  ></FormField>
+                  <Button type="submit">Submit</Button>
+                </form>
+              </Form>
+            </div>
+          </PopoverContent>
+        </Popover>
+      </div>
   );
 }
